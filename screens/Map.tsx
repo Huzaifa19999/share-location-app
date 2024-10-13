@@ -12,13 +12,12 @@ function Map({ navigation }: any) {
       .ref(`users`)
       .on('value', snapshot => {
         const users = snapshot.val();
-        // Filter users who have location data
         const usersWithLocation = Object.keys(users)
           .map(key => ({
             id: key,
-            ...users[key], // Spread user details (email, username)
+            ...users[key], 
           }))
-          .filter(user => user.location); // Only keep users with location
+          .filter(user => user.location); 
 
         setLocationData(usersWithLocation);
       });
@@ -36,8 +35,8 @@ function Map({ navigation }: any) {
         <MapView
           style={styles.map}
           initialRegion={{
-            latitude: locationData[0]?.location?.latitude || 37.78825, // Default if no data
-            longitude: locationData[0]?.location?.longitude || -122.4324, // Default if no data
+            latitude: locationData[0]?.location?.latitude || 37.78825,
+            longitude: locationData[0]?.location?.longitude || -122.4324,
             latitudeDelta: 0.05,
             longitudeDelta: 0.05,
           }}
